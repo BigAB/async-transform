@@ -1,6 +1,6 @@
 import QUnit from 'steal-mocha';
 import chai from 'chai';
-import asyncTransform from './async-transform';
+import asyncTransform from '../async-transform';
 
 const assert = chai.assert;
 
