@@ -1,0 +1,70 @@
+{
+  "name": "async-transform",
+  "version": "0.0.0",
+  "description": "A function for easy asynchronous transformation flow",
+  "homepage": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BigAB/async-transform.git"
+  },
+  "files": ["dist"],
+  "author": {
+    "name": "Adam L Barrett",
+    "email": "bigab@live.ca",
+    "url": "adamlbarrett.com"
+  },
+  "scripts": {
+    "preversion": "npm test && npm run build",
+    "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",
+    "postversion": "git push --tags && git checkout master && git branch -D release && git push",
+    "testee": "testee test/test.html --browsers firefox",
+    "test": "npm run eslint && npm run testee",
+    "eslint": "eslint src/**/*.js",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "build": "node build.js",
+    "document": "documentjs",
+    "develop": "done-serve --static --develop --port 8080"
+  },
+  "main": "dist/cjs/async-transform",
+  "browser": "dist/global/async-transform",
+  "keywords": [
+    "async",
+    "small modules"
+  ],
+  "system": {
+    "main": "async-transform",
+    "configDependencies": [
+      "live-reload"
+    ],
+    "npmIgnore": [
+      "documentjs",
+      "testee",
+      "generator-donejs",
+      "donejs-cli",
+      "steal-tools"
+    ],
+    "directories": {
+      "lib": "src"
+    },
+    "npmAlgorithm": "flat"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "chai": "^3.5.0",
+    "documentjs": "^0.4.4",
+    "done-serve": "^0.3.0-pre.0",
+    "donejs-cli": "^0.10.0-pre.0",
+    "eslint": "^3.10.2",
+    "generator-donejs": "^0.10.0-pre.0",
+    "steal": "^1.0.0-rc.11",
+    "steal-css": "^1.0.0-rc.0",
+    "steal-mocha": "^1.0.0-pre.2",
+    "steal-qunit": "^0.1.1",
+    "steal-tools": "^1.0.0-rc.9",
+    "testee": "^0.3.0-pre.2"
+  }
+}
