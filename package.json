@@ -8,6 +8,9 @@
     "type": "git",
     "url": "git://github.com/BigAB/async-transform.git"
   },
+  "files": [
+    "dist/"
+  ],
   "author": {
     "name": "Adam L Barrett",
     "email": "bigab@live.ca",
