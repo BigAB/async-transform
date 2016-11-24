@@ -1,6 +1,6 @@
 {
   "name": "@bigab/async-transform",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A function for easy asynchronous transformation flow",
   "homepage": "",
   "license": "MIT",
