@@ -3,7 +3,7 @@ Thank you for contributing to async-transform!
 
 ## Reporting Bugs
 
-To report a bug, please visit [GitHub Issues](/bigab/async-transform/issues).
+To report a bug, please visit [GitHub Issues](../../issues).
 
 When filing a bug, it is helpful to include small examples using tools like [JSBin][1] or [CodePen][2].
 
@@ -20,7 +20,7 @@ When contributing, please include tests with new features or bug fixes in a feat
 5. Run tests (`npm test`) and make sure they pass
 6. Update the documentation if necessary
 7. Push your changes to your remote branch - `git push -u origin some-fix`
-8. Submit a pull request! Navigate to [Pull Requests](/bigab/async-transform/pulls) and click the 'New Pull Request' button. Fill in some details about your potential patch including a meaningful title. When finished, press "Send pull request".
+8. Submit a pull request! Navigate to [Pull Requests](../../pulls) and click the 'New Pull Request' button. Fill in some details about your potential patch including a meaningful title. When finished, press "Send pull request".
 
 [1]: https://jsbin.com/
 [2]: https://codepen.io/
