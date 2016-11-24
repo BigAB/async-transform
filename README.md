@@ -19,13 +19,13 @@ npm install --save @bigab/async-transform
 With [StealJS](http://stealjs.com/), you can import this module with ES6 imports:
 
 ```js
-import plugin from '@bigab/async-transform';
+import asyncTransform from '@bigab/async-transform';
 ```
 
 ### CommonJS
 
 ```js
-var plugin = require("@bigab/async-transform");
+var asyncTransform = require("@bigab/async-transform").default;
 ```
 
 ### Standalone
@@ -35,7 +35,7 @@ Load the `global` version of the plugin:
 ```html
 <script src='./node_modules/async-transform/dist/global/@bigab/async-transform.js'></script>
 <script>
-asyncTransform([transformFunctions], val);
+asyncTransform([transformFunctions], val); // added to window
 </script>
 ```
 

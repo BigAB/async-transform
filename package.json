@@ -8,8 +8,12 @@
     "type": "git",
     "url": "git://github.com/BigAB/async-transform.git"
   },
+  "main": "dist/cjs/async-transform",
+  "module": "src/async-transform",
+  "browser": "dist/global/async-transform.js",
   "files": [
-    "dist/"
+    "dist/",
+    "src/async-transform.js"
   ],
   "author": {
     "name": "Adam L Barrett",
@@ -30,8 +34,6 @@
     "document": "documentjs",
     "develop": "done-serve --static --develop --port 8080"
   },
-  "main": "dist/cjs/async-transform",
-  "browser": "dist/global/async-transform",
   "keywords": [
     "async",
     "small modules"
