@@ -1,4 +1,4 @@
-# async-transform
+# @bigab/async-transform
 
 [![Build Status](https://travis-ci.org/BigAB/async-transform.png?branch=master)](https://travis-ci.org/BigAB/async-transform)
 
@@ -11,7 +11,7 @@ A tiny utility function for composing asynchronous transformations
 ## Install
 
 ```
-npm install async-transform
+npm install --save @bigab/async-transform
 ```
 
 ### ES6
@@ -19,13 +19,13 @@ npm install async-transform
 With [StealJS](http://stealjs.com/), you can import this module with ES6 imports:
 
 ```js
-import plugin from 'async-transform';
+import plugin from '@bigab/async-transform';
 ```
 
 ### CommonJS
 
 ```js
-var plugin = require("async-transform");
+var plugin = require("@bigab/async-transform");
 ```
 
 ### Standalone
@@ -33,7 +33,7 @@ var plugin = require("async-transform");
 Load the `global` version of the plugin:
 
 ```html
-<script src='./node_modules/async-transform/dist/global/async-transform.js'></script>
+<script src='./node_modules/async-transform/dist/global/@bigab/async-transform.js'></script>
 <script>
 asyncTransform([transformFunctions], val);
 </script>

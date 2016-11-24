@@ -1,6 +1,6 @@
 {
-  "name": "async-transform",
-  "version": "0.0.1",
+  "name": "@bigab/async-transform",
+  "version": "1.0.3",
   "description": "A function for easy asynchronous transformation flow",
   "homepage": "",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "git://github.com/BigAB/async-transform.git"
   },
   "files": [
-    "dist"
+    "dist/"
   ],
   "author": {
     "name": "Adam L Barrett",
@@ -19,7 +19,8 @@
   "scripts": {
     "preversion": "npm test && npm run build",
     "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",
-    "postversion": "git push --tags && git checkout master && git branch -D release && git push",
+    "postversion": "git push --tags",
+    "postpublish":  "git checkout master && git branch -D release && git push",
     "testee": "testee src/test --browsers firefox",
     "test": "npm run eslint && npm run testee",
     "eslint": "eslint src/**/*.js",
