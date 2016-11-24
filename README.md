@@ -10,6 +10,10 @@ A tiny utility function for composing asynchronous transformations
 
 ## Install
 
+```
+npm install async-transform
+```
+
 ### ES6
 
 With [StealJS](http://stealjs.com/), you can import this module with ES6 imports:
