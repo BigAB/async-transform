@@ -1,6 +1,6 @@
 {
   "name": "@bigab/async-transform",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A function for easy asynchronous transformation flow",
   "homepage": "",
   "license": "MIT",
@@ -19,14 +19,13 @@
   "scripts": {
     "preversion": "npm test && npm run build",
     "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",
-    "postversion": "git push --tags",
-    "postpublish": "git checkout master && git branch -D release && git push",
+    "postversion": "git push --tags && git checkout master && git branch -D release && git push",
     "testee": "testee src/test --browsers firefox",
     "test": "npm run eslint && npm run testee",
-    "eslint": "eslint src/**/*.js",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish",
+    "eslint": "eslint src/*.js",
+    "release:patch": "npm version patch && npm build && npm publish",
+    "release:minor": "npm version minor && npm build && npm publish",
+    "release:major": "npm version major && npm build && npm publish",
     "build": "node build.js",
     "document": "documentjs",
     "develop": "done-serve --static --develop --port 8080"
