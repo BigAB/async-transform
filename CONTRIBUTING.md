@@ -1,5 +1,5 @@
 
-Thank you for contributing to async-transform!
+Thank you for contributing to @bigab/async-transform!
 
 ## Reporting Bugs
 
@@ -13,7 +13,7 @@ Search for previous tickets, if there is one add to that one rather than creatin
 
 When contributing, please include tests with new features or bug fixes in a feature branch until you're ready to submit the code for consideration; then push to the fork, and submit a pull request. More detailed steps are as follows:
 
-1. Navigate to your clone of the async-transform repository - `cd /path/to/async-transform`
+1. Navigate to your clone of the @bigab/async-transform repository - `cd /path/to/@bigab/async-transform`
 2. Create a new feature branch - `git checkout -b some-fix`
 3. Make some changes
 4. Update tests to accomodate your changes

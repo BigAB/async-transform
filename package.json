@@ -1,5 +1,5 @@
 {
-  "name": "async-transform",
+  "name": "@bigab/async-transform",
   "version": "0.0.1",
   "description": "A function for easy asynchronous transformation flow",
   "homepage": "",
