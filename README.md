@@ -8,6 +8,35 @@ A tiny utility function for composing asynchronous transformations
   - [composable](#composition)
   - works great with ES2017's `async/await`
 
+**Async-Transform** is a simple function, that takes an array of **transform functions** and a **value** and runs each transform function in sequence, passing along the result of the last transform function and **returns a promise**.
+
+There is also an option to create **async tranform functions** by using [partial application](#partial-application), which makes composition trivial. 
+
+##### `asyncTransform(transformFunctions:array(Function)[, value:any, context:any]) -> Promise(any)`
+
+**Transform Functions** are just functions that follow this pattern:
+
+ - They accept 1 argument (the value)
+ - they return either a value or a promise that resolves to a value
+ - they **do not** return `undefined` as the value, and should guard against so
+
+ That's it.
+ 
+#### Basic use
+
+```javascript
+// some are sync transforms, some are async
+const transformFunctions = [
+  v => v+1,
+  v => Promise.resolve(v*2),
+  v => v*v,
+  v => Promise.resolve({foo:v})
+];
+
+asyncTransform(funcs, 1)
+  .then( v => console.log(v) ); // { foo: 16 }
+```
+
 ## Install
 
 ```
@@ -37,27 +66,6 @@ Load the `global` version of the plugin:
 <script>
 asyncTransform([transformFunctions], val); // added to window
 </script>
-```
-
-## Use
-
-Async-Transform is a simple utility function, that takes an array of **transform functions** and a **value** and runs each transform function in sequence, passing the result of the last transform function (or value at the start) as the sole argument. `asyncTransform` returns a promise, which makes chaining and composing transform functions trivial.
-
-A **transform function** is just a function that takes a single argument as the value and returns either a new value, or a promise that will resolve to a new value.
-
-#### Basic use
-
-```javascript
-// some are sync transforms, some are async
-const transformFunctions = [
-  v => v+1,
-  v => Promise.resolve(v*2),
-  v => v*v,
-  v => Promise.resolve({foo:v})
-];
-
-asyncTransform(funcs, 1)
-  .then( v => console.log(v) ); // { foo: 16 }
 ```
 
 #### Partial application
