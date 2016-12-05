@@ -4,7 +4,7 @@
 
 A tiny utility function for composing asynchronous transformations
 
-**NOTE: Async/Await pretty much makes this module redundant. If you are either transpiling with Babel/Steal/Whatever, or using an evnironment that supports Async/Await, you probably do not need this module**
+**NOTE: Async/Await pretty much makes this module redundant. If you are either transpiling with Babel/Steal/...Whatever, or you are using an environment that supports Async/Await, you probably do not need this module**
 
   - great for unit testing
   - [composable](#composition)
