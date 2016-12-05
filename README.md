@@ -115,10 +115,10 @@ class Thing {
   }
 };
 
-const process = asyncTransform( funcs );
-
-process(3)
-  .then( v => console.log(v) ) // { value: 64 }
+const thing = new Thing( 3 );
+thing.calculate(4)
+  .then( v => console.log(v) ) // { value: 21 }
+  
 ```
 
 If you want to use the partial application option while also setting a context, just make sure to pass `undefined` for your value.
