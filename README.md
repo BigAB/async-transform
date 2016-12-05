@@ -89,6 +89,23 @@ process(3)
 ```
 Since the partial application option returns what is considered a **transform function**, you can then use that return value to compose more complicated async-transformations, built up from easily testable pieces.
 
+
+**Here is that example done better with async/await**
+```javascript
+const transformFunctions = [
+  v => v+1,
+  v => Promise.resolve(v*2),
+  v => v*v,
+  v => Promise.resolve({ value: v })
+];
+
+const process = value => transformFunctions
+                           .reduce( async (v, tfunc) => tfunc(await v), value);
+
+process(3)
+  .then( v => console.log(v) ) // { value: 64 }
+```
+
 #### Setting context
 
 You can also add an optional 3rd argument, which is the *[context](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this)* the transformFunctions will be run with (using `Function.prototype.call`).
@@ -123,6 +140,34 @@ thing.calculate(4)
   
 ```
 
+**Here is that example done better with async/await**
+```javascript
+class Thing {
+  constructor(baseValue) {
+    this.value = baseValue;
+  }
+  addValue(v) {
+    return v + this.value;
+  }
+  multiplyValue(v) {
+    return v * this.value;
+  }
+  wrap(v) {
+    return { value: v };
+  }
+  async calculate(v) {
+    let val = await this.addValue(v);
+    val = await this.multiplyValue(val);
+    val = await this.wrap(val);
+    return val;
+  }
+};
+
+const thing = new Thing( 3 );
+thing.calculate(4)
+  .then( v => console.log(v) ) // { value: 21 }
+```
+
 If you want to use the partial application option while also setting a context, just make sure to pass `undefined` for your value.
 
 ```javascript
@@ -152,6 +197,33 @@ buildDocumentationSite( filesGlob ) {
   ], filesGlob);
 }
 /*...*/
+```
+
+**Here is that example done better with async/await**
+```javascript
+async buildDocumentationSite( filesGlob ) {
+  
+  const convertFilesToDocsJSON = async ( glob ) => {
+    const files = await readFiles.call( this.plugins, glob );
+    return parseFiles.call( this.plugins, files );
+  };
+
+  const docsToSiteData = async ( docs ) => {
+    const pages = await createSiteStructure.call( this.plugins, docs );
+    const orderedPages = await orderPages.call( this.plugins, pages );
+    return orderMenu.call( this.plugins, orderedPages );
+  };
+
+  const generateDocsFromTemplates = async ( siteData ) => {
+    await generateHTMLSite.call( this.templates, siteData );
+    await generatePDF.call( this.templates, siteData );
+    return generateMarkdownDocs.call( this.templates, siteData );
+  }
+  
+  const docsJSON = await convertFilesToDocsJSON( filesGlob );
+  const siteData = await docsToSiteData( docsJSON );
+  return generateDocsFromTemplates( siteData );
+}
 ```
 
 <del>
@@ -225,6 +297,49 @@ export const findAll = asyncTransform([
   service.findAll,
   afterFindAllHooks
 ]);
+
+/* use:
+ findAll({ completed: true })
+  .then( completedTasks => display( completedTasks ) )
+  .catch( err => displayError( err.reason ) )
+*/
+```
+
+**Here is that example done better with async/await**
+
+```javascript
+const hooks = {
+  /*...*/
+  findAll: {
+    before: [
+      authenticate({ field: 'user' }),
+      authorize,
+      convertToQueryParams,
+      transformFields({ 'id': '_id' })
+    ],
+    after: [
+      payload => payload.data,
+      transformFields({ '_id': 'id' })
+    ]
+  }
+  /*...*/
+}
+
+const awaitThenCall = async (hook, func) => func(await hook);
+
+const beforeFindAllHooks = async hook => {
+  return hooks.findAll.before.reduce( awaitThenCall );
+}
+
+const afterFindAllHooks = async hook => {
+  return hooks.findAll.after.reduce( awaitThenCall );
+}
+
+export const findAll = async (query) => {
+  const req = await beforeFindAllHooks(query);
+  const res = await service.findAll( req );
+  return afterFindAllHooks(res);
+};
 
 /* use:
  findAll({ completed: true })
