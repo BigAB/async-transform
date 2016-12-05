@@ -4,9 +4,11 @@
 
 A tiny utility function for composing asynchronous transformations
 
+**NOTE: Async/Await pretty much makes this module redundant. If you are either transpiling with Babel/Steal/Whatever, or using an evnironment that supports Async/Await, you probably do not need this module**
+
   - great for unit testing
   - [composable](#composition)
-  - works great with ES2017's `async/await`
+  - <del>works great with ES2017's `async/await`</del>
 
 **Async-Transform** is a simple function, that takes an array of **transform functions** and a **value** and runs each transform function in sequence, passing along the result of the last transform function and **returns a promise**.
 
@@ -152,7 +154,11 @@ buildDocumentationSite( filesGlob ) {
 /*...*/
 ```
 
+<del>
 Though ES2017's `async/await` feature may make hand-rolling your own async transformations super easy, `asyncTransform` still has a place due to it's context binding and dynamic composability, but it still works well **with** `async/await`.
+</del>
+
+There is nothing you couldn't do with async-transforms that async await doesn't already handle in a more standardized way: compare:
 
 ```javascript
 async function get( req ) {
@@ -170,6 +176,23 @@ async function get( req ) {
   return model;
 }
 ```
+
+with 
+
+```javascript
+async function get( req ) {
+  req = await checkBootstrapCache( req );
+  let requestsToServer = await checkLocalStore( req )
+  let res = await axios.get( requestsToServer );
+  let parsedResponse = await parseResponse( res );
+  let data = await extractData( parsedResponse );
+  let model = instantiateModel( data );
+  addToLocalStore( model );
+  return model;
+}
+```
+
+...yeah, async/await pretty much has it covered. Thanks for coming out though.
 
 #### Composition
 
