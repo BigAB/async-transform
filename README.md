@@ -328,11 +328,11 @@ const hooks = {
 const awaitThenCall = async (hook, func) => func(await hook);
 
 const beforeFindAllHooks = async hook => {
-  return hooks.findAll.before.reduce( awaitThenCall );
+  return hooks.findAll.before.reduce( awaitThenCall, hook );
 }
 
 const afterFindAllHooks = async hook => {
-  return hooks.findAll.after.reduce( awaitThenCall );
+  return hooks.findAll.after.reduce( awaitThenCall, hook );
 }
 
 export const findAll = async (query) => {
