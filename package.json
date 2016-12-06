@@ -68,7 +68,7 @@
     "eslint": "^3.10.2",
     "fs-extra": "^1.0.0",
     "generator-donejs": "^0.10.0-pre.0",
-    "steal": "^1.0.0-rc.11",
+    "steal": "1.0.0-rc.11",
     "steal-css": "^1.0.0-rc.0",
     "steal-mocha": "^1.0.0-pre.2",
     "steal-tools": "^1.0.0-rc.9",
